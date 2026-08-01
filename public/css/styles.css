@@ -1,0 +1,146 @@
+:root {
+  color-scheme: light;
+  --ink: #17211d;
+  --muted: #66756f;
+  --line: #d9e3dd;
+  --wash: #f5f8f6;
+  --fit-green: #188a4f;
+  --fit-coral: #e76f51;
+  --fit-gold: #f2b84b;
+  --fit-blue: #2474a6;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.hero-band {
+  background:
+    linear-gradient(135deg, rgba(24, 138, 79, 0.1), rgba(36, 116, 166, 0.08)),
+    var(--wash);
+}
+
+.demo-frame,
+.game-stage {
+  background: #10231b;
+  border: 1px solid #20392e;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(23, 33, 29, 0.16);
+  overflow: hidden;
+}
+
+.demo-frame canvas,
+.game-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.feature-box,
+.auth-panel,
+.metric,
+.sensor-box,
+.score-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.feature-box {
+  min-height: 145px;
+  padding: 1.25rem;
+}
+
+.feature-box p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.auth-page {
+  background: var(--wash);
+}
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.auth-panel {
+  width: min(100%, 430px);
+  padding: 2rem;
+}
+
+.game-layout {
+  min-height: calc(100vh - 57px);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--wash);
+}
+
+.game-stage {
+  align-self: start;
+}
+
+.control-panel {
+  background: #ffffff;
+  border-left: 1px solid var(--line);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.metric {
+  padding: 0.85rem;
+}
+
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.metric strong {
+  display: block;
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+.sensor-box {
+  padding: 1rem;
+}
+
+.score-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.score-item {
+  padding: 0.75rem;
+}
+
+.score-item strong,
+.score-item span {
+  display: block;
+}
+
+.score-item span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 960px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .control-panel {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}

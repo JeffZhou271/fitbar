@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game | FitBar Trainer</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+      <div class="container-fluid px-3 px-lg-4">
+        <a class="navbar-brand fw-bold" href="/">FitBar Trainer</a>
+        <div class="d-flex align-items-center gap-2">
+          <span class="small text-secondary" id="playerName"></span>
+          <button class="btn btn-outline-dark btn-sm" id="logoutBtn" type="button">Log out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="game-layout">
+      <section class="game-stage">
+        <canvas id="gameCanvas" width="1100" height="620" aria-label="FitBar movement game"></canvas>
+      </section>
+
+      <aside class="control-panel">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h1 class="h4 mb-0">Training</h1>
+          <span class="badge text-bg-success" id="statusBadge">Ready</span>
+        </div>
+
+        <label class="form-label" for="modeSelect">Movement</label>
+        <select class="form-select mb-3" id="modeSelect">
+          <option>Shoulder Press</option>
+          <option>Deadlift</option>
+          <option>Bicep Curl</option>
+          <option>Squat Bar Path</option>
+        </select>
+
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <div class="metric">
+              <span>Score</span>
+              <strong id="scoreValue">0</strong>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="metric">
+              <span>Accuracy</span>
+              <strong id="accuracyValue">100%</strong>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="metric">
+              <span>Reps</span>
+              <strong id="repValue">0</strong>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="metric">
+              <span>Time</span>
+              <strong id="timeValue">45</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 mb-3">
+          <button class="btn btn-success" id="startBtn" type="button">Start round</button>
+          <button class="btn btn-outline-dark" id="saveBtn" type="button" disabled>Save score</button>
+        </div>
+
+        <div class="sensor-box mb-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <label class="form-label mb-0" for="manualPosition">FitBar height</label>
+            <span class="small text-secondary" id="sourceValue">Demo</span>
+          </div>
+          <input class="form-range" id="manualPosition" type="range" min="0" max="100" value="50">
+          <div class="small text-secondary">Use the slider for testing. Your ESP32 can replace this by posting sensor values.</div>
+        </div>
+
+        <h2 class="h6">Recent scores</h2>
+        <div class="score-list" id="scoreList"></div>
+      </aside>
+    </main>
+
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/game.js"></script>
+  </body>
+</html>

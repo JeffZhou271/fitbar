@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": "5bb823b0-da81-4cb2-9258-3812bed3a5a2",
+      "username": "testery5k9xs",
+      "passwordHash": "$2b$12$Di7v6tzK7jGc6ubqkKQM3e3e9S3paNtRLrfrTjoEkDmV4uvPLGdVC",
+      "createdAt": "2026-07-31T19:05:27.898Z"
+    },
+    {
+      "id": "65731b93-926c-4c69-9a5a-579b91e6231b",
+      "username": "admin",
+      "passwordHash": "$2b$12$sAVF0/bF/6Kn72rQDvsIsOJi4Zc5ZC1ucXwgKwzFZSPINai3nPnXi",
+      "createdAt": "2026-08-01T04:03:37.666Z"
+    }
+  ],
+  "scores": [
+    {
+      "id": "4bda014d-ab29-441a-a0ec-473cbd8d6c5e",
+      "userId": "5bb823b0-da81-4cb2-9258-3812bed3a5a2",
+      "username": "testery5k9xs",
+      "mode": "Shoulder Press",
+      "score": 900,
+      "accuracy": 91,
+      "reps": 8,
+      "createdAt": "2026-07-31T19:05:27.939Z"
+    },
+    {
+      "id": "967b41a6-22e1-4418-b112-a3b58894a872",
+      "userId": "65731b93-926c-4c69-9a5a-579b91e6231b",
+      "username": "admin",
+      "mode": "Deadlift",
+      "score": 3453,
+      "accuracy": 78,
+      "reps": 28,
+      "createdAt": "2026-08-01T04:04:31.545Z"
+    },
+    {
+      "id": "0fddc169-6b34-491c-9a4a-f92898347a12",
+      "userId": "65731b93-926c-4c69-9a5a-579b91e6231b",
+      "username": "admin",
+      "mode": "Bicep Curl",
+      "score": 3732,
+      "accuracy": 81,
+      "reps": 29,
+      "createdAt": "2026-08-01T04:09:30.973Z"
+    },
+    {
+      "id": "ec9b00a4-4d5e-47c2-946d-3327c6c37cac",
+      "userId": "65731b93-926c-4c69-9a5a-579b91e6231b",
+      "username": "admin",
+      "mode": "Bicep Curl",
+      "score": 4071,
+      "accuracy": 85,
+      "reps": 62,
+      "createdAt": "2026-08-01T04:12:47.922Z"
+    }
+  ],
+  "sensor": {
+    "position": 74,
+    "velocity": 1.2,
+    "angle": 12,
+    "source": "esp32",
+    "updatedAt": "2026-07-31T19:05:27.922Z"
+  }
+}

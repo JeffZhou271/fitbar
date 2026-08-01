@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitBar Trainer</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/">FitBar Trainer</a>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-dark" href="/login.html">Log in</a>
+          <a class="btn btn-success" href="/register.html">Start</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="hero-band">
+      <div class="container py-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <p class="text-success fw-semibold mb-2">MPU6050 + ESP32 movement game</p>
+            <h1 class="display-5 fw-bold mb-3">Train smooth up and down reps with a moving line challenge.</h1>
+            <p class="lead text-secondary mb-4">
+              The player dot follows your FitBar. Stay close to the hill line to build better form, control and muscle tension.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-success btn-lg" href="/register.html">Create account</a>
+              <a class="btn btn-outline-dark btn-lg" href="/game.html">Open game</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="demo-frame">
+              <canvas id="previewCanvas" width="720" height="420" aria-label="FitBar game preview"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section class="container py-4">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="feature-box">
+            <h2 class="h5">Form Target</h2>
+            <p>Match the line with controlled reps instead of rushing each lift.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <h2 class="h5">Sensor Ready</h2>
+            <p>ESP32 can send position data to the game through a simple API endpoint.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <h2 class="h5">Score Tracking</h2>
+            <p>Save accuracy, reps and score under each player account.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/js/preview.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in | FitBar Trainer</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <form class="auth-panel" id="loginForm">
+        <a class="navbar-brand fw-bold d-inline-block mb-4" href="/">FitBar Trainer</a>
+        <h1 class="h3 mb-2">Welcome back</h1>
+        <p class="text-secondary mb-4">Log in to save your FitBar training scores.</p>
+        <div class="alert d-none" id="message" role="alert"></div>
+        <div class="mb-3">
+          <label class="form-label" for="username">Username</label>
+          <input class="form-control" id="username" autocomplete="username" required minlength="3">
+        </div>
+        <div class="mb-4">
+          <label class="form-label" for="password">Password</label>
+          <input class="form-control" id="password" type="password" autocomplete="current-password" required minlength="6">
+        </div>
+        <button class="btn btn-success w-100" type="submit">Log in</button>
+        <p class="text-center text-secondary mt-3 mb-0">
+          No account yet? <a href="/register.html">Create one</a>
+        </p>
+      </form>
+    </main>
+    <script type="module" src="/js/login.js"></script>
+  </body>
+</html>
