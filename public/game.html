@@ -3,84 +3,95 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Game | FitBar Trainer</title>
+    <title>FitBar Arcade</title>
     <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom">
-      <div class="container-fluid px-3 px-lg-4">
-        <a class="navbar-brand fw-bold" href="/">FitBar Trainer</a>
-        <div class="d-flex align-items-center gap-2">
-          <span class="small text-secondary" id="playerName"></span>
-          <button class="btn btn-outline-dark btn-sm" id="logoutBtn" type="button">Log out</button>
-        </div>
+  <body class="arcade-page">
+    <nav class="arcade-nav">
+      <a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a>
+      <div class="nav-player">
+        <span class="live-dot"></span>
+        <span id="playerName">Player</span>
+        <button class="icon-button" id="soundBtn" type="button" aria-label="Toggle sound">♪</button>
+        <button class="btn btn-outline-light btn-sm" id="logoutBtn" type="button">Log out</button>
       </div>
     </nav>
 
-    <main class="game-layout">
-      <section class="game-stage">
-        <canvas id="gameCanvas" width="1100" height="620" aria-label="FitBar movement game"></canvas>
+    <main class="arcade-shell">
+      <section class="game-browser" aria-label="Choose a game">
+        <div>
+          <p class="eyebrow">FITBAR EXPERIENCES</p>
+          <h1>Pick your challenge</h1>
+        </div>
+        <div class="game-tabs" id="gameTabs">
+          <button class="game-card active" data-game="trail" type="button">
+            <span class="game-icon trail-icon">〰</span>
+            <span><b>Skyline Surfer</b><small>Follow the flow</small></span>
+            <em>PRECISION</em>
+          </button>
+          <button class="game-card" data-game="targets" type="button">
+            <span class="game-icon target-icon">◎</span>
+            <span><b>Power Pop</b><small>Smash the targets</small></span>
+            <em>SPEED</em>
+          </button>
+          <button class="game-card" data-game="dodge" type="button">
+            <span class="game-icon dodge-icon">◇</span>
+            <span><b>Neon Escape</b><small>Dodge the walls</small></span>
+            <em>SURVIVAL</em>
+          </button>
+        </div>
       </section>
 
-      <aside class="control-panel">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h1 class="h4 mb-0">Training</h1>
-          <span class="badge text-bg-success" id="statusBadge">Ready</span>
+      <section class="play-grid">
+        <div class="stage-wrap">
+          <div class="stage-topbar">
+            <div><span class="status-pulse"></span><b id="gameTitle">Skyline Surfer</b></div>
+            <span class="stage-hint" id="gameHint">Match the glowing trail</span>
+          </div>
+          <canvas id="gameCanvas" width="1100" height="620" aria-label="FitBar movement game"></canvas>
+          <div class="start-overlay" id="startOverlay">
+            <span class="overlay-icon" id="overlayIcon">〰</span>
+            <h2 id="overlayTitle">Skyline Surfer</h2>
+            <p id="overlayText">Move your FitBar up and down to stay on the energy trail.</p>
+            <button class="play-button" id="overlayStartBtn" type="button"><span>▶</span> Play now</button>
+          </div>
+          <div class="combo-pill" id="comboPill">COMBO x<span id="comboValue">1</span></div>
         </div>
 
-        <label class="form-label" for="modeSelect">Movement</label>
-        <select class="form-select mb-3" id="modeSelect">
-          <option>Shoulder Press</option>
-          <option>Deadlift</option>
-          <option>Bicep Curl</option>
-          <option>Squat Bar Path</option>
-        </select>
+        <aside class="control-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">ROUND STATS</p><h2>Your run</h2></div>
+            <span class="status-badge" id="statusBadge">READY</span>
+          </div>
 
-        <div class="row g-2 mb-3">
-          <div class="col-6">
-            <div class="metric">
-              <span>Score</span>
-              <strong id="scoreValue">0</strong>
-            </div>
+          <div class="metrics-grid">
+            <div class="metric score-metric"><span>Score</span><strong id="scoreValue">0</strong><small>POINTS</small></div>
+            <div class="metric"><span>Accuracy</span><strong id="accuracyValue">100%</strong><div class="mini-bar"><i id="accuracyBar"></i></div></div>
+            <div class="metric"><span>Moves</span><strong id="repValue">0</strong><small>REPS / HITS</small></div>
+            <div class="metric"><span>Time</span><strong id="timeValue">45</strong><small>SECONDS</small></div>
           </div>
-          <div class="col-6">
-            <div class="metric">
-              <span>Accuracy</span>
-              <strong id="accuracyValue">100%</strong>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="metric">
-              <span>Reps</span>
-              <strong id="repValue">0</strong>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="metric">
-              <span>Time</span>
-              <strong id="timeValue">45</strong>
-            </div>
-          </div>
-        </div>
 
-        <div class="d-grid gap-2 mb-3">
-          <button class="btn btn-success" id="startBtn" type="button">Start round</button>
-          <button class="btn btn-outline-dark" id="saveBtn" type="button" disabled>Save score</button>
-        </div>
+          <label class="control-label" for="modeSelect">Exercise</label>
+          <select class="form-select arcade-select" id="modeSelect">
+            <option>Shoulder Press</option><option>Deadlift</option><option>Bicep Curl</option><option>Squat Bar Path</option>
+          </select>
 
-        <div class="sensor-box mb-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <label class="form-label mb-0" for="manualPosition">FitBar height</label>
-            <span class="small text-secondary" id="sourceValue">Demo</span>
+          <div class="sensor-box">
+            <div class="sensor-title"><span>FitBar height</span><span class="connection"><i></i><b id="sourceValue">Demo</b></span></div>
+            <input class="form-range" id="manualPosition" type="range" min="0" max="100" value="50">
+            <div class="height-labels"><span>LOW</span><span>Slide to test without a sensor</span><span>HIGH</span></div>
           </div>
-          <input class="form-range" id="manualPosition" type="range" min="0" max="100" value="50">
-          <div class="small text-secondary">Use the slider for testing. Your ESP32 can replace this by posting sensor values.</div>
-        </div>
 
-        <h2 class="h6">Recent scores</h2>
-        <div class="score-list" id="scoreList"></div>
-      </aside>
+          <div class="action-row">
+            <button class="play-button flex-grow-1" id="startBtn" type="button">Start round</button>
+            <button class="save-button" id="saveBtn" type="button" disabled aria-label="Save score">Save</button>
+          </div>
+
+          <div class="scores-heading"><h3>Recent runs</h3><span>PERSONAL BESTS</span></div>
+          <div class="score-list" id="scoreList"></div>
+        </aside>
+      </section>
     </main>
 
     <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>

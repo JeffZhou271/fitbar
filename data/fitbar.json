@@ -11,6 +11,12 @@
       "username": "admin",
       "passwordHash": "$2b$12$sAVF0/bF/6Kn72rQDvsIsOJi4Zc5ZC1ucXwgKwzFZSPINai3nPnXi",
       "createdAt": "2026-08-01T04:03:37.666Z"
+    },
+    {
+      "id": "e7fd295d-b7e0-49e8-9e5f-e0fbf879f959",
+      "username": "danny",
+      "passwordHash": "$2b$12$gUfhLLzk9NKsXes5sjGxP.9Ej1TWbyc67AA7.LHTEv7eh4c/4V5Ly",
+      "createdAt": "2026-08-12T08:31:59.850Z"
     }
   ],
   "scores": [
