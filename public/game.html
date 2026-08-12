@@ -11,6 +11,8 @@
     <nav class="arcade-nav">
       <a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a>
       <div class="nav-player">
+        <button class="nav-pill" id="dashboardBtn" type="button">My progress</button>
+        <button class="nav-pill" id="leaderboardBtn" type="button">Leaderboard</button>
         <span class="live-dot"></span>
         <span id="playerName">Player</span>
         <button class="icon-button" id="soundBtn" type="button" aria-label="Toggle sound">♪</button>
@@ -40,6 +42,16 @@
             <span><b>Neon Escape</b><small>Dodge the walls</small></span>
             <em>SURVIVAL</em>
           </button>
+          <button class="game-card" data-game="rhythm" type="button">
+            <span class="game-icon rhythm-icon">♫</span>
+            <span><b>Rhythm Lift</b><small>Move to the beat</small></span>
+            <em>RHYTHM</em>
+          </button>
+          <button class="game-card" data-game="boss" type="button">
+            <span class="game-icon boss-icon">♛</span>
+            <span><b>Titan Clash</b><small>Defeat the boss</small></span>
+            <em>BOSS</em>
+          </button>
         </div>
       </section>
 
@@ -57,6 +69,8 @@
             <button class="play-button" id="overlayStartBtn" type="button"><span>▶</span> Play now</button>
           </div>
           <div class="combo-pill" id="comboPill">COMBO x<span id="comboValue">1</span></div>
+          <div class="feedback-pop" id="feedbackPop">PERFECT!</div>
+          <div class="countdown" id="countdown"></div>
         </div>
 
         <aside class="control-panel">
@@ -85,6 +99,7 @@
 
           <div class="action-row">
             <button class="play-button flex-grow-1" id="startBtn" type="button">Start round</button>
+            <button class="save-button" id="pauseBtn" type="button" disabled>Pause</button>
             <button class="save-button" id="saveBtn" type="button" disabled aria-label="Save score">Save</button>
           </div>
 
@@ -93,6 +108,45 @@
         </aside>
       </section>
     </main>
+
+    <div class="arcade-modal hidden" id="calibrationModal" role="dialog" aria-modal="true" aria-labelledby="calibrationTitle">
+      <div class="modal-card calibration-card">
+        <button class="modal-close" data-close="calibrationModal" type="button">×</button>
+        <p class="eyebrow">QUICK SETUP</p><h2 id="calibrationTitle">Calibrate your movement</h2>
+        <p class="modal-copy">Move to your comfortable lowest and highest positions. This makes every game fit your range of motion.</p>
+        <div class="calibration-track"><i id="calibrationFill"></i><span id="calibrationMarker"></span></div>
+        <div class="calibration-values"><span>Low <b id="calLow">50</b></span><span>Current <b id="calCurrent">50</b></span><span>High <b id="calHigh">50</b></span></div>
+        <button class="play-button w-100" id="finishCalibration" type="button" disabled>Move through your full range</button>
+        <button class="text-button" id="skipCalibration" type="button">Use default range</button>
+      </div>
+    </div>
+
+    <div class="arcade-modal hidden" id="resultsModal" role="dialog" aria-modal="true" aria-labelledby="resultsTitle">
+      <div class="modal-card results-card">
+        <button class="modal-close" data-close="resultsModal" type="button">×</button>
+        <span class="result-rank" id="resultRank">A</span><p class="eyebrow">ROUND COMPLETE</p><h2 id="resultsTitle">Excellent run!</h2>
+        <div class="result-stats"><div><strong id="resultScore">0</strong><span>Score</span></div><div><strong id="resultAccuracy">0%</strong><span>Accuracy</span></div><div><strong id="resultMoves">0</strong><span>Moves</span></div></div>
+        <p class="personal-best hidden" id="personalBest">★ NEW PERSONAL BEST</p>
+        <div class="xp-earned"><span>XP earned</span><b id="xpEarned">+0 XP</b></div>
+        <div class="modal-actions"><button class="save-button" id="resultSaveBtn" type="button">Save result</button><button class="play-button" id="playAgainBtn" type="button">Play again</button></div>
+      </div>
+    </div>
+
+    <div class="arcade-modal hidden" id="dashboardModal" role="dialog" aria-modal="true" aria-labelledby="dashboardTitle">
+      <div class="modal-card dashboard-card">
+        <button class="modal-close" data-close="dashboardModal" type="button">×</button>
+        <div class="profile-hero"><div class="avatar" id="profileAvatar">⚡</div><div><p class="eyebrow">PLAYER PROFILE</p><h2 id="dashboardTitle">Your progress</h2><span id="profileLevel">Level 1</span></div></div>
+        <div class="xp-bar"><i id="xpBar"></i></div><p class="xp-copy" id="xpCopy">0 / 250 XP</p>
+        <div class="dashboard-stats" id="dashboardStats"></div>
+        <div class="daily-card"><div><p class="eyebrow">DAILY CHALLENGE</p><h3 id="dailyTitle">Triple Play</h3><span id="dailyDescription"></span></div><b id="dailyProgress">0 / 3</b></div>
+        <h3 class="section-title">Achievements</h3><div class="achievements" id="achievements"></div>
+        <div class="settings-row"><label><input id="reducedMotion" type="checkbox"> Reduce motion</label><label>Avatar <select id="avatarSelect"><option value="bolt">⚡ Bolt</option><option value="rocket">🚀 Rocket</option><option value="crown">♛ Crown</option><option value="robot">🤖 Robot</option></select></label></div>
+      </div>
+    </div>
+
+    <div class="arcade-modal hidden" id="leaderboardModal" role="dialog" aria-modal="true" aria-labelledby="leaderboardTitle">
+      <div class="modal-card leaderboard-card"><button class="modal-close" data-close="leaderboardModal" type="button">×</button><p class="eyebrow">GLOBAL RANKINGS</p><h2 id="leaderboardTitle">Top FitBar players</h2><div id="leaderboardList" class="leaderboard-list"></div></div>
+    </div>
 
     <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script type="module" src="/js/game.js"></script>

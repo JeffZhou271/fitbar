@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const defaultDb = {
   users: [],
   scores: [],
+  profiles: [],
   sensor: {
     position: 50,
     velocity: 0,
@@ -30,6 +31,36 @@ const defaultDb = {
     updatedAt: null,
   },
 };
+
+const achievementCatalog = [
+  { id: 'first_run', name: 'First Flight', description: 'Complete your first FitBar round.', icon: '🚀' },
+  { id: 'score_2500', name: 'Power Player', description: 'Score 2,500 points in one round.', icon: '⚡' },
+  { id: 'accuracy_90', name: 'Precision Pro', description: 'Finish a round with 90% accuracy.', icon: '🎯' },
+  { id: 'moves_25', name: 'Rep Machine', description: 'Make 25 successful moves in one round.', icon: '💪' },
+  { id: 'five_games', name: 'Arcade Regular', description: 'Complete five FitBar rounds.', icon: '🏆' },
+];
+
+function statsFor(db, userId) {
+  const scores = db.scores.filter((entry) => entry.userId === userId);
+  const totalScore = scores.reduce((sum, entry) => sum + Number(entry.score || 0), 0);
+  const totalMoves = scores.reduce((sum, entry) => sum + Number(entry.reps || 0), 0);
+  const xp = Math.round(totalScore / 10 + totalMoves * 5 + scores.length * 50);
+  const level = Math.floor(Math.sqrt(xp / 250)) + 1;
+  const currentFloor = (level - 1) ** 2 * 250;
+  const nextFloor = level ** 2 * 250;
+  const unlocked = achievementCatalog.filter((item) => {
+    if (item.id === 'first_run') return scores.length >= 1;
+    if (item.id === 'score_2500') return scores.some((entry) => entry.score >= 2500);
+    if (item.id === 'accuracy_90') return scores.some((entry) => entry.accuracy >= 90);
+    if (item.id === 'moves_25') return scores.some((entry) => entry.reps >= 25);
+    return scores.length >= 5;
+  }).map((item) => item.id);
+  return {
+    rounds: scores.length, totalScore, totalMoves, bestScore: Math.max(0, ...scores.map((entry) => entry.score)),
+    averageAccuracy: scores.length ? Math.round(scores.reduce((sum, entry) => sum + entry.accuracy, 0) / scores.length) : 0,
+    xp, level, xpIntoLevel: xp - currentFloor, xpForNextLevel: nextFloor - currentFloor, unlocked,
+  };
+}
 
 async function readDb() {
   try {
@@ -139,6 +170,47 @@ app.post('/api/auth/login', async (req, res) => {
 
 app.get('/api/me', authenticate, (req, res) => {
   res.json({ message: 'Current user', data: { user: req.user } });
+});
+
+app.get('/api/dashboard', authenticate, async (req, res) => {
+  const db = await readDb();
+  const profile = db.profiles?.find((entry) => entry.userId === req.user.id) || {};
+  const stats = statsFor(db, req.user.id);
+  const recent = db.scores.filter((entry) => entry.userId === req.user.id)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8);
+  const day = new Date().toISOString().slice(0, 10);
+  const dailyTarget = 3;
+  const dailyProgress = recent.filter((entry) => entry.createdAt.slice(0, 10) === day).length;
+  res.json({ message: 'Player dashboard', data: {
+    profile: { avatar: profile.avatar || 'bolt', reducedMotion: Boolean(profile.reducedMotion), sound: profile.sound !== false },
+    stats, recent, achievements: achievementCatalog.map((item) => ({ ...item, unlocked: stats.unlocked.includes(item.id) })),
+    dailyChallenge: { title: 'Triple Play', description: 'Complete three rounds today.', progress: Math.min(dailyProgress, dailyTarget), target: dailyTarget },
+  } });
+});
+
+app.put('/api/profile', authenticate, async (req, res) => {
+  const db = await readDb();
+  db.profiles ||= [];
+  const existing = db.profiles.find((entry) => entry.userId === req.user.id);
+  const changes = {
+    avatar: ['bolt', 'rocket', 'crown', 'robot'].includes(req.body.avatar) ? req.body.avatar : 'bolt',
+    reducedMotion: Boolean(req.body.reducedMotion), sound: req.body.sound !== false,
+  };
+  if (existing) Object.assign(existing, changes); else db.profiles.push({ userId: req.user.id, ...changes });
+  await writeDb(db);
+  res.json({ message: 'Profile updated', data: changes });
+});
+
+app.get('/api/leaderboard', async (req, res) => {
+  const db = await readDb();
+  const players = new Map();
+  db.scores.forEach((entry) => {
+    const current = players.get(entry.userId) || { username: entry.username, score: 0, rounds: 0 };
+    current.score = Math.max(current.score, entry.score); current.rounds += 1; players.set(entry.userId, current);
+  });
+  const leaderboard = [...players.values()].sort((a, b) => b.score - a.score).slice(0, 20)
+    .map((entry, index) => ({ ...entry, rank: index + 1 }));
+  res.json({ message: 'Global leaderboard', data: leaderboard });
 });
 
 app.get('/api/sensor/latest', (req, res) => {

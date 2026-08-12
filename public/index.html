@@ -1,69 +1,52 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FitBar Trainer</title>
-    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/">FitBar Trainer</a>
-        <div class="d-flex gap-2">
-          <a class="btn btn-outline-dark" href="/login.html">Log in</a>
-          <a class="btn btn-success" href="/register.html">Start</a>
-        </div>
-      </div>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="FitBar Arcade turns movement into five exciting fitness games."><title>FitBar Arcade — Move. Play. Level up.</title><link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css"><link rel="stylesheet" href="/css/styles.css"></head>
+  <body class="landing-page">
+    <div class="landing-glow" aria-hidden="true"></div>
+    <nav class="landing-nav">
+      <a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a>
+      <div class="landing-links"><a href="#games">Games</a><a href="#features">How it works</a></div>
+      <div class="landing-actions"><button class="auth-sound" id="landingSoundBtn" type="button" aria-label="Toggle music">♪</button><a class="login-link" href="/login.html">Log in</a><a class="play-button" href="/register.html">Play free</a></div>
     </nav>
 
-    <main class="hero-band">
-      <div class="container py-5">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-6">
-            <p class="text-success fw-semibold mb-2">MPU6050 + ESP32 movement game</p>
-            <h1 class="display-5 fw-bold mb-3">Train smooth up and down reps with a moving line challenge.</h1>
-            <p class="lead text-secondary mb-4">
-              The player dot follows your FitBar. Stay close to the hill line to build better form, control and muscle tension.
-            </p>
-            <div class="d-flex flex-wrap gap-2">
-              <a class="btn btn-success btn-lg" href="/register.html">Create account</a>
-              <a class="btn btn-outline-dark btn-lg" href="/game.html">Open game</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="demo-frame">
-              <canvas id="previewCanvas" width="720" height="420" aria-label="FitBar game preview"></canvas>
-            </div>
-          </div>
+    <main>
+      <section class="landing-hero">
+        <div class="hero-copy">
+          <div class="hero-chip"><i></i> ESP32 POWERED FITNESS ARCADE</div>
+          <h1>Your workout.<br>Your <span>adventure.</span></h1>
+          <p>Move your FitBar to surf neon trails, smash power targets, escape obstacles, follow the beat, and battle mighty Titans.</p>
+          <div class="hero-actions"><a class="hero-play" href="/register.html"><span>▶</span> Start playing</a><a class="hero-secondary" href="/login.html">I have an account</a></div>
+          <div class="hero-proof"><span><b>5</b> game worlds</span><span><b>XP</b> progression</span><span><b>🏆</b> leaderboards</span></div>
         </div>
-      </div>
+        <div class="hero-arcade">
+          <div class="arcade-window">
+            <div class="preview-bar"><span><i></i> SKYLINE SURFER</span><b id="previewScore">1,280 PTS</b></div>
+            <canvas id="previewCanvas" width="720" height="450" aria-label="Animated Skyline Surfer game preview"></canvas>
+            <div class="preview-combo">COMBO ×4</div>
+          </div>
+          <div class="floating-stat stat-one"><small>ACCURACY</small><b>94%</b></div><div class="floating-stat stat-two"><small>LEVEL UP</small><b>12</b></div>
+        </div>
+      </section>
+
+      <section class="game-worlds" id="games">
+        <div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR EXPERIENCE</p><h2>Five ways to move</h2></div><p>Every game responds to your real movement. Pick a challenge and chase your next high score.</p></div>
+        <div class="world-grid">
+          <article class="world-card world-yellow"><span class="world-icon">〰</span><div><small>PRECISION</small><h3>Skyline Surfer</h3><p>Follow the glowing energy trail with smooth, controlled movement.</p></div><b>01</b></article>
+          <article class="world-card world-pink"><span class="world-icon">◎</span><div><small>SPEED</small><h3>Power Pop</h3><p>Line up and smash targets before they race past you.</p></div><b>02</b></article>
+          <article class="world-card world-purple"><span class="world-icon">◇</span><div><small>SURVIVAL</small><h3>Neon Escape</h3><p>Slip through moving gates and keep your winning streak alive.</p></div><b>03</b></article>
+          <article class="world-card world-blue"><span class="world-icon">♫</span><div><small>RHYTHM</small><h3>Rhythm Lift</h3><p>Move high and low in time with the pulsing arcade beat.</p></div><b>04</b></article>
+          <article class="world-card world-red"><span class="world-icon">♛</span><div><small>BOSS BATTLE</small><h3>Titan Clash</h3><p>Land precise attacks, build combos, and defeat the Titan.</p></div><b>05</b></article>
+        </div>
+      </section>
+
+      <section class="landing-features" id="features">
+        <div class="feature-intro"><p class="eyebrow">MORE THAN A WORKOUT</p><h2>Every move builds your legend.</h2><p>Your FitBar becomes the controller. Calibrate once, choose an exercise, and let each repetition power your game.</p><a class="play-button" href="/register.html">Create your player card</a></div>
+        <div class="feature-stack"><div><span>⚡</span><div><h3>Level up</h3><p>Earn XP, unlock achievements, and complete new daily challenges.</p></div></div><div><span>🎯</span><div><h3>Train with purpose</h3><p>Live accuracy and combo feedback rewards controlled movement.</p></div></div><div><span>🏆</span><div><h3>Climb the ranks</h3><p>Save personal bests and compete on the global leaderboard.</p></div></div></div>
+      </section>
+
+      <section class="landing-cta"><span>READY, PLAYER ONE?</span><h2>Turn your next workout into a game.</h2><a class="hero-play" href="/register.html"><span>▶</span> Enter the arcade</a></section>
     </main>
-
-    <section class="container py-4">
-      <div class="row g-3">
-        <div class="col-md-4">
-          <div class="feature-box">
-            <h2 class="h5">Form Target</h2>
-            <p>Match the line with controlled reps instead of rushing each lift.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="feature-box">
-            <h2 class="h5">Sensor Ready</h2>
-            <p>ESP32 can send position data to the game through a simple API endpoint.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="feature-box">
-            <h2 class="h5">Score Tracking</h2>
-            <p>Save accuracy, reps and score under each player account.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="/js/preview.js"></script>
+    <footer class="landing-footer"><a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a><p>Movement is your controller.</p><span>ESP32 + MPU6050 READY</span></footer>
+    <script type="module" src="/js/preview.js"></script>
   </body>
 </html>

@@ -17,6 +17,12 @@
       "username": "danny",
       "passwordHash": "$2b$12$gUfhLLzk9NKsXes5sjGxP.9Ej1TWbyc67AA7.LHTEv7eh4c/4V5Ly",
       "createdAt": "2026-08-12T08:31:59.850Z"
+    },
+    {
+      "id": "665cf7e9-ba31-409c-b752-ea75d1f02bc3",
+      "username": "daneliya",
+      "passwordHash": "$2b$12$1BDw4k5ldmGR2GJefaSzsez47ZIZRotSQ72TyZUDf7THzUoaT.pu6",
+      "createdAt": "2026-08-12T09:01:25.152Z"
     }
   ],
   "scores": [
@@ -59,6 +65,24 @@
       "accuracy": 85,
       "reps": 62,
       "createdAt": "2026-08-01T04:12:47.922Z"
+    },
+    {
+      "id": "8a7d6e3b-1fcf-4eea-a8f2-4cf8d6cb9d7f",
+      "userId": "e7fd295d-b7e0-49e8-9e5f-e0fbf879f959",
+      "username": "danny",
+      "mode": "Titan Clash · Shoulder Press",
+      "score": 8740,
+      "accuracy": 77,
+      "reps": 10,
+      "createdAt": "2026-08-12T08:51:53.913Z"
+    }
+  ],
+  "profiles": [
+    {
+      "userId": "e7fd295d-b7e0-49e8-9e5f-e0fbf879f959",
+      "avatar": "crown",
+      "reducedMotion": false,
+      "sound": true
     }
   ],
   "sensor": {

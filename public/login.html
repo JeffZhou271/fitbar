@@ -1,31 +1,26 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Log in | FitBar Trainer</title>
-    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body class="auth-page">
-    <main class="auth-shell">
-      <form class="auth-panel" id="loginForm">
-        <a class="navbar-brand fw-bold d-inline-block mb-4" href="/">FitBar Trainer</a>
-        <h1 class="h3 mb-2">Welcome back</h1>
-        <p class="text-secondary mb-4">Log in to save your FitBar training scores.</p>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Player Login | FitBar Arcade</title><link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css"><link rel="stylesheet" href="/css/styles.css"></head>
+  <body class="arcade-auth-page">
+    <div class="auth-stars" aria-hidden="true"></div>
+    <header class="auth-header"><a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a><button class="auth-sound" id="authSoundBtn" type="button" aria-label="Toggle arcade music">♪ Music</button></header>
+    <main class="arcade-auth-shell">
+      <section class="auth-showcase">
+        <p class="eyebrow">WELCOME TO THE ARENA</p>
+        <h1>Move. Play.<br><span>Level up.</span></h1>
+        <p>Turn every workout into an adventure. Chase high scores, defeat Titans, and climb the global leaderboard.</p>
+        <div class="floating-game-icons" aria-hidden="true"><span>⚡</span><span>♫</span><span>◎</span></div>
+        <div class="auth-features"><div><b>5</b><span>Arcade games</span></div><div><b>∞</b><span>Levels to earn</span></div><div><b>🏆</b><span>Global ranks</span></div></div>
+      </section>
+      <form class="arcade-auth-panel" id="loginForm">
+        <span class="cabinet-lights" aria-hidden="true"></span>
+        <div class="player-badge">PLAYER 1</div><h2>Ready to play?</h2><p>Enter your player ID to continue your run.</p>
         <div class="alert d-none" id="message" role="alert"></div>
-        <div class="mb-3">
-          <label class="form-label" for="username">Username</label>
-          <input class="form-control" id="username" autocomplete="username" required minlength="3">
-        </div>
-        <div class="mb-4">
-          <label class="form-label" for="password">Password</label>
-          <input class="form-control" id="password" type="password" autocomplete="current-password" required minlength="6">
-        </div>
-        <button class="btn btn-success w-100" type="submit">Log in</button>
-        <p class="text-center text-secondary mt-3 mb-0">
-          No account yet? <a href="/register.html">Create one</a>
-        </p>
+        <label class="arcade-field" for="username"><span>PLAYER NAME</span><div><i>♟</i><input id="username" name="username" autocomplete="username" placeholder="Enter username" required minlength="3"></div></label>
+        <label class="arcade-field" for="password"><span>SECRET CODE</span><div><i>◆</i><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required minlength="6"><button class="password-toggle" type="button" aria-label="Show password">SHOW</button></div></label>
+        <button class="arcade-submit" type="submit"><span>▶</span> ENTER THE ARCADE</button>
+        <p class="auth-switch">New player? <a href="/register.html">Create your player card</a></p>
+        <a class="back-home" href="/">← Back to home</a>
       </form>
     </main>
     <script type="module" src="/js/login.js"></script>

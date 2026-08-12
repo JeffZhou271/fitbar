@@ -1,31 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register | FitBar Trainer</title>
-    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body class="auth-page">
-    <main class="auth-shell">
-      <form class="auth-panel" id="registerForm">
-        <a class="navbar-brand fw-bold d-inline-block mb-4" href="/">FitBar Trainer</a>
-        <h1 class="h3 mb-2">Create account</h1>
-        <p class="text-secondary mb-4">Start a training profile for your FitBar game.</p>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Join | FitBar Arcade</title><link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css"><link rel="stylesheet" href="/css/styles.css"></head>
+  <body class="arcade-auth-page">
+    <div class="auth-stars" aria-hidden="true"></div>
+    <header class="auth-header"><a class="arcade-brand" href="/"><span class="brand-mark">F</span> FitBar <b>Arcade</b></a><button class="auth-sound" id="authSoundBtn" type="button" aria-label="Toggle arcade music">♪ Music</button></header>
+    <main class="arcade-auth-shell">
+      <section class="auth-showcase">
+        <p class="eyebrow">YOUR ADVENTURE STARTS HERE</p><h1>Build your<br><span>fitness legend.</span></h1>
+        <p>Create a player card to save your victories, unlock achievements, and become the next FitBar champion.</p>
+        <div class="floating-game-icons" aria-hidden="true"><span>🚀</span><span>♛</span><span>💪</span></div>
+        <div class="auth-features"><div><b>XP</b><span>Earn rewards</span></div><div><b>5</b><span>Game worlds</span></div><div><b>★</b><span>Daily quests</span></div></div>
+      </section>
+      <form class="arcade-auth-panel" id="registerForm">
+        <span class="cabinet-lights" aria-hidden="true"></span>
+        <div class="player-badge">NEW CHALLENGER</div><h2>Create player</h2><p>Choose your arcade identity and start earning XP.</p>
         <div class="alert d-none" id="message" role="alert"></div>
-        <div class="mb-3">
-          <label class="form-label" for="username">Username</label>
-          <input class="form-control" id="username" autocomplete="username" required minlength="3">
-        </div>
-        <div class="mb-4">
-          <label class="form-label" for="password">Password</label>
-          <input class="form-control" id="password" type="password" autocomplete="new-password" required minlength="6">
-        </div>
-        <button class="btn btn-success w-100" type="submit">Create account</button>
-        <p class="text-center text-secondary mt-3 mb-0">
-          Already have one? <a href="/login.html">Log in</a>
-        </p>
+        <label class="arcade-field" for="username"><span>PLAYER NAME</span><div><i>♟</i><input id="username" name="username" autocomplete="username" placeholder="At least 3 characters" required minlength="3"></div></label>
+        <label class="arcade-field" for="password"><span>SECRET CODE</span><div><i>◆</i><input id="password" name="password" type="password" autocomplete="new-password" placeholder="At least 6 characters" required minlength="6"><button class="password-toggle" type="button" aria-label="Show password">SHOW</button></div></label>
+        <button class="arcade-submit" type="submit"><span>+</span> CREATE PLAYER CARD</button>
+        <p class="auth-switch">Already a player? <a href="/login.html">Return to login</a></p><a class="back-home" href="/">← Back to home</a>
       </form>
     </main>
     <script type="module" src="/js/register.js"></script>

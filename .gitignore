@@ -1,4 +1,5 @@
 node_modules/
+data/fitbar.json
 
 # Local configuration and secrets
 .env
